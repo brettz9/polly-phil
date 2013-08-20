@@ -63,19 +63,19 @@ define(['module'], function (module) {
             args = moduleStr.split('!'),
             name = args[0],
             methodChecks = args.slice(1),
+            aliased = name.split('@'),
+            alias = aliased[1],
+            path = aliased[0],
+            variable = alias ?
+                path : // No need to split up the path if an alias file is being used as the "path" should really just be properties
+                path.split('/').slice(-1)[0],
+            props = variable.split('.'),
             cfg = config.config,
             polyfillCfg = cfg && cfg.polyfill,
             polyfillConfig = polyfillCfg || {},
             polyfillBaseUrl = (polyfillConfig.baseUrl || 'jam').replace(/([^\/])$/, '$1/'), // We want this relative to the main module path (todo: see if https://github.com/jrburke/requirejs/issues/844 prompts support for separating the plugin baseUrl and module baseUrl, in which case use the module one)
-            aliased = name.split('@'),
-            alias = aliased[1],
-            path = aliased[0],
             polyfillPathHasProtocol = polyfillBaseUrl.indexOf(':') > -1,
-            polyfillAbsolutePath = polyfillBaseUrl.charAt() === '/',
-            variable = alias ?
-                path : // No need to split up the path if an alias file is being used as the "path" should really just be properties
-                path.split('/').slice(-1)[0],
-            props = variable.split('.');
+            polyfillAbsolutePath = polyfillBaseUrl.charAt() === '/';
         if (!alias) { // NOTE: If file size starts becoming a concern, we could scale back on the allowable values to just allow pathDepth of "one" + fileFormat of "full" (or revert back to a single autoNamespace variable); but this approach more flexibility to directory structure
             // Using example, "polyfill!Array.prototype.map", transform later to the file path...
             switch (polyfillConfig.pathDepth) {
