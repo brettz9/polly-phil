@@ -1,0 +1,38 @@
+{
+    "name": "polly-phil",
+    "version": "0.1.0",
+    "author": {
+        "name": "Brett Zamir",
+        "email": "brettz9@yahoo.com",
+        "url": "brett-zamir.me"
+    },
+    "description": "Provides AMD plugin (tested with RequireJS) to conditionally require polyfills; also provides browserify transforming plugin",
+    "main": "./demos/polyfill",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/brettz9/polly-phil.git"
+    },
+    "keywords": [
+        "polyfill",
+        "shim",
+        "requirejs",
+        "require",
+        "amd",
+        "browserify"
+    ],
+    "dependencies": {
+        "requirejs": "*",
+        "amdefine": ">=0.0.8",
+        "browserify": "*",
+        "through": "*",
+        "jamjs": "*"
+    },
+    "license": "MIT",
+    "engine": {
+        "node": ">=0.10"
+    },
+    "readmeFilename": "README.md",
+    "bugs": {
+        "url": "https://github.com/brettz9/polly-phil/issues"
+    }
+}

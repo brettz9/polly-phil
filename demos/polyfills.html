@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8" />
+<title>RequireJS polyfill plugin test</title>
+<script src="require.js"></script>
+<script src="require-config.js"></script><!-- The needed polyfill configuration code is minimal, so we could also include it below -->
+<script>
+/*globals require*/
+
+require(['domReady!'], function () {
+    'use strict';
+
+    // We assume we can avoid addiitonal load of Array methods if map is already available
+    require(['writeBr', 'polyfill!Array.prototype!map'], function (writeBr, alreadyExisted) { // No real need to use or specify the alreadyExisted argument
+        writeBr(alreadyExisted); // gives false in IE < 9, true in Firefox, etc.
+        writeBr([3, 4, 5, 6].map(function (i) {return i > 4;})); // [false, false, true, true]
+
+        // We really shouldn't use the polyfill plugin to add non-standard properties, but we can demonstrate aliases this way.
+        require(['writeBr', 'polyfill!Array@polyfillHelpers/ArrayGenerics!map', 'polyfill!Array!of'], function (writeBr, alreadyExisted, alreadyExisted2) { // No real need to use or specify the alreadyExisted arguments
+            writeBr(alreadyExisted); // gives false in IE < 9, true in Firefox, etc.
+            writeBr(Array.slice([3, 4, 5, 6], 2)); // [5, 6]
+            writeBr(alreadyExisted2); // gives false in IE < 9, true in Firefox, etc.
+            writeBr(Array.of(3, 4, 5, 6));
+        });
+    });
+
+});
+</script>
+</head>
+<body></body>
+</html>
