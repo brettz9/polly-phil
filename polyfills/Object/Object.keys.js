@@ -7,7 +7,7 @@ define(function () {
     if (Object.keys) { // Better to use polyfill plugin to detect presence, as reusable for other polyfills
         return Object.keys;
     }
-        
+
     var hasOwnProperty = Object.prototype.hasOwnProperty,
         hasDontEnumBug = !({toString: null}).propertyIsEnumerable('toString'),
         dontEnums = [
@@ -42,5 +42,4 @@ define(function () {
         }
         return result;
     };
-    return false;
 });

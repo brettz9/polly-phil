@@ -1,6 +1,7 @@
 /*globals define, require, module*/
+var define;
 if (typeof define !== 'function') {
-    var define = require('amdefine')(module);
+    define = require('amdefine')(module);
 }
 define(function () {
     'use strict';

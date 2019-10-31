@@ -1,6 +1,7 @@
 /*globals define, require, module*/
+var define;
 if (typeof define !== 'function') { // We need this as Node will make it here as it does not yet support this polyfill
-    var define = require('amdefine')(module);
+    define = require('amdefine')(module);
     var requirejs = require('requirejs');
     requirejs.config({
         paths: {polyfill: '../../demos/polyfill'},

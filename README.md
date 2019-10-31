@@ -1,5 +1,7 @@
 # polly-phil
 
+**Note: This project is no longer being actively maintained.**
+
 [requirejs](https://github.com/jrburke/requirejs/) plugin providing
 conditional polyfill loading, avoiding additional document loads
 when the feature is already detected as supported and providing
